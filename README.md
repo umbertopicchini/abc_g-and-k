@@ -1,7 +1,8 @@
 # abcmcmc_g-and-k
 
 An example of ABC-MCMC algorithm to estimate parameters of a g-and-k distribution. 
-We implement the example in Allingham et al 2009, except that we use our own custom summary statistics, see gk_summaries.
+We implement the example in Allingham et al 2009, except that we use our own custom summary statistics (see gk_summaries)
+and use a Gaussian kernel to compare summary statistics for simulated and actual data.
 
 Content:
 - gk_run, the script running the example
