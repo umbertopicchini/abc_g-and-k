@@ -1,4 +1,4 @@
-# abcmcmc_g-and-k
+# abc_g-and-k
 
 An example of ABC-MCMC algorithm to estimate parameters of a g-and-k distribution. 
 We implement the example in Allingham et al 2009, except that we use our own custom summary statistics (see gk_summaries)
