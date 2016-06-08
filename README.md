@@ -1,6 +1,6 @@
 # abc_g-and-k
 
-An example of ABC-MCMC algorithm to estimate parameters of a g-and-k distribution. See also my slides http://goo.gl/ypAOjs
+A MATLAB example of ABC-MCMC algorithm to estimate parameters of a g-and-k distribution. See also my slides http://goo.gl/ypAOjs
 
 We implement the example in Allingham et al 2009, except that we use our own custom summary statistics (see gk_summaries)
 and use a Gaussian kernel to compare summary statistics for simulated and actual data.
