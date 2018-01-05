@@ -56,7 +56,6 @@ function [ABCMCMC,summariesmatrix] = abcmcmc(problem,data,bigtheta,parmask,parba
 data=data(:); % assume a column data vector
 summobs = feval([problem, '_summaries'],data); % vector of summaries for the observed data
 summariesmatrix = zeros(R_mcmc,length(summobs));
-% the initial number of clones
 threshold = threshold_vec(1);  % the initial value for the ABC threshold
 
 %:::::::::::::::::::::::::::::: INITIALIZATION  ::::::::::::::::
@@ -98,20 +97,16 @@ logkernel =  -log(threshold) -0.5 * ((summsimuldata(:)-summobs(:))'.*covmatrix.*
 
  if log(rand) < logkernel-logkernel_old +log(prior)-log(prior_old)
       % here we accept our proposal theta
-      ABCMCMC(2,:) = [theta];
+      ABCMCMC(2,:) = theta;
       logkernel_old = logkernel;
       theta_old = theta;
       prior_old = prior;
       summariesmatrix(2,:) = summsimuldata;
  else
      % reject proposal
-      ABCMCMC(2,:) = [theta_old];
+      ABCMCMC(2,:) = theta_old;
       summariesmatrix(2,:) = summsimuldata_old;
  end
-
-
-
-%:::::::::: NOW WE CAN START WITH THE DATA-CLONING PROCEDURE ::::::::::::::::::::::::::::::::::::::: 
 
 
 accept_proposal=0;  % start the counter for the number of accepted proposals
@@ -191,13 +186,13 @@ for mcmc_iter = 3:R_mcmc
     
     if log(rand) < logkernel-logkernel_old +log(prior)-log(prior_old)
              accept_proposal=accept_proposal+1;
-             ABCMCMC(mcmc_iter,:) = [theta];
+             ABCMCMC(mcmc_iter,:) = theta;
              logkernel_old = logkernel;
              theta_old = theta;
              prior_old = prior;
              summariesmatrix(mcmc_iter,:) = summsimuldata;
      else
-             ABCMCMC(mcmc_iter,:) = [theta_old];
+             ABCMCMC(mcmc_iter,:) = theta_old;
              summariesmatrix(mcmc_iter,:) = summsimuldata_old;
      end
    
